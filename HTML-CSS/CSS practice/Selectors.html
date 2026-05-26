@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectors</title>
+    <style>
+        /* 1. Universal reset */
+        * {
+            font-family: Arial, sans-serif;
+        }
+
+        /* 2. Child Selector: Target direct children of chat_body */
+        .chat_body > .message_incoming {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 8px;
+        }
+
+        /* 3. Space/Descendant Selector: Target text inside incoming messages */
+        .message_incoming .message_text {
+            background-color: #dbfac0;
+        }
+
+        /* 4. Adjacent Sibling Selector: Target timestamp right after the text */
+        .message_text + .message_timestamp {
+            font-size: 10px;
+            color: #010d0f;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat_body">
+    <div class="message_incoming">
+        <div class="message_text">Hello!</div>
+        <div class="message_timestamp">10:00 AM</div>
+    </div>
+</div>
+</body>
+</html>

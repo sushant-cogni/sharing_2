@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APIs & Storage</title>
+</head>
+<body>
+    <form>
+    <label>Your Latitude:</label>
+    <input type="text" id="latDisplay" readonly>
+    <button type="button" onclick="saveLocation()">Get Location</button>
+</form>
+
+<script>
+function saveLocation() {
+    // 1. Check if browser supports geolocation
+    if (navigator.geolocation) {
+        // 2. Call the API
+        navigator.geolocation.getCurrentPosition(function(position) {
+            let lat = position.coords.latitude;
+            
+            // 3. Save to Session Storage
+            sessionStorage.setItem("userLat", lat);
+            
+            // 4. Display in the HTML form
+            document.getElementById("latDisplay").value = sessionStorage.getItem("userLat");
+        });
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+</script>
+</body>
+</html>

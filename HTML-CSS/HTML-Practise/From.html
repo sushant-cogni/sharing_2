@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Listeners Practice</title>
+    <script src="script.js" defer> </script>
+    <script>
+        // Dummy JavaScript functions to test the events
+        function pageLoaded() { console.log("Page is fully loaded."); }
+        function inputFocused() { console.log("User is typing..."); }
+        function validateName() { console.log("User left input. Validating name now."); }
+        function typingDetected() { console.log("Key released!"); }
+        function updatePrice() { console.log("Dropdown changed. Updating price."); }
+        function mouseEntered() { console.log("Mouse is over the button."); }
+        function submitForm() { 
+            console.log("Form submitted!"); 
+            return false; // Prevents actual page reload for testing
+        }
+    </script>
+</head>
+
+<body onload="pageLoaded()">
+
+    <h2>Registration Form</h2>
+
+    <form onsubmit="return submitForm()">
+        
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" 
+               onfocus="inputFocused()" 
+               onblur="validateName()" 
+               onkeyup="typingDetected()">
+        
+        <br><br>
+
+        <label for="course">Select Course:</label>
+        <select id="course" onchange="updatePrice()">
+            <option value="html">HTML5</option>
+            <option value="css">CSS3</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit" 
+                onmouseover="mouseEntered()" 
+                onclick="console.log('Button clicked!')">
+            Register Now
+        </button>
+
+    </form>
+
+</body>
+</html>

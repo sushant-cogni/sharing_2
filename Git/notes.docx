@@ -1,0 +1,242 @@
+Markdown# 📘 Git & GitHub – Complete Notes (Beginner to Advanced)## 📌 1. What is Git?**Git** is a **Distributed Version Control System (DVCS)** used to:- Track changes in source code- Collaborate with teams- Maintain history of a project- Revert to older versions if something breaks### ✅ Key Characteristics- Distributed (each developer has full copy)- Fast and reliable- Supports branching & merging- Open source---## 📌 2. What is GitHub?**GitHub** is a **cloud-based platform** that hosts Git repositories.> **Git = tool**  > **GitHub = service/platform**### ✅ GitHub provides:- Remote repositories- Collaboration (Pull Requests)- Issue tracking- CI/CD integrations- Code review tools---## 📌 3. Git Architecture (Very Important)Git works with **3 main areas**:Show more lines
+Working Directory  →  Staging Area  →  Local Repository
+
+### ✅ Explanation
+
+| Area | Purpose |
+|------|--------|
+| Working Directory | Files you edit |
+| Staging Area (Index) | Files prepared for commit |
+| Local Repository | Committed files (history) |
+
+---
+
+## 📌 4. Installing & Configuring Git
+
+### 🔹 Check installation
+```bash
+git --version
+
+🔹 Global configuration
+Shellgit config --global user.name "Your Name"git config --global user.email "your@email.com"Show more lines
+🔹 View configuration
+Shellgit config --listShow more lines
+
+📌 5. Creating a Git Repository
+🔹 Initialize a repo
+Shellgit initShow more lines
+
+This creates a hidden .git folder.
+
+
+📌 6. Git Basic Commands (Core Commands)
+✅ Check repository status
+Shellgit statusShow more lines
+✅ Track new files
+Shellgit add file.txtgit add .Show more lines
+✅ Commit changes
+Shellgit commit -m "Initial commit"Show more lines
+✅ View commit history
+Shellgit loggit log --onelineShow more lines
+
+📌 7. Git Lifecycle
+Untracked → Staged → Committed
+
+🔹 Example
+Shellgit add app.jsgit commit -m "Add app logic"Show more lines
+
+📌 8. Ignoring Files (.gitignore)
+Used to ignore files like:
+
+node_modules
+Logs
+Env files
+
+🔹 Example .gitignore
+.ignorenode_modules/.env*.logShow more lines
+
+📌 9. Branching in Git
+🔹 What is a branch?
+A branch is an independent line of development.
+Default branch: main or master
+🔹 List branches
+Shellgit branchShow more lines
+🔹 Create branch
+Shellgit branch feature-loginShow more lines
+🔹 Switch branch
+Shellgit checkout feature-loginShow more lines
+🔹 Create + switch
+Shellgit checkout -b feature-loginShow more lines
+
+📌 10. Merging Branches
+🔹 Fast-forward Merge
+When no divergence exists.
+Shellgit checkout maingit merge feature-loginShow more lines
+🔹 Three-way Merge
+Occurs when both branches changed.
+
+📌 11. Merge Conflict (Very Important)
+✅ What is a merge conflict?
+Occurs when same lines in same file are modified in different branches.
+🔹 Conflict example
+Plain Text<<<<<<< HEADconsole.log("Main branch");=======console.log("Feature branch");>>>>>>> feature-loginShow more lines
+✅ How to resolve
+
+Open file
+Decide correct code
+Remove conflict markers
+Save file
+Run:
+
+Shellgit add .git commit -m "Resolve merge conflict"Show more lines
+
+📌 12. Git Diff
+Shows differences between changes.
+Shellgit diffgit diff --stagedgit diff commit1 commit2Show more lines
+
+📌 13. Undoing Things in Git
+🔹 Unstage a file
+Shellgit reset file.txtShow more lines
+🔹 Discard changes
+Shellgit checkout -- file.txtShow more lines
+🔹 Amend last commit
+Shellgit commit --amendShow more lines
+
+📌 14. Git Reset vs Revert
+✅ git reset (Dangerous – history changes)
+Shellgit reset --soft HEAD~1git reset --mixed HEAD~1git reset --hard HEAD~1Show more lines
+✅ git revert (Safe – recommended)
+Shellgit revert <commit_hash>Show more lines
+
+📌 15. Stashing (Temporary Save)
+🔹 Save changes
+Shellgit stashShow more lines
+🔹 List stash
+Shellgit stash listShow more lines
+🔹 Apply stash
+Shellgit stash applyShow more lines
+
+📌 16. Git Tags
+Used for releases.
+Shellgit tag v1.0git taggit push origin v1.0Show more lines
+
+📌 17. Remote Repositories (GitHub)
+🔹 Add remote
+Shellgit remote add origin https://github.com/user/repo.gitShow more lines
+🔹 View remote
+Shellgit remote -vShow more lines
+🔹 Push code
+Shellgit push origin mainShow more lines
+🔹 Pull changes
+Shellgit pull origin mainShow more lines
+
+📌 18. Git Clone
+Clone a GitHub repo:
+Shellgit clone https://github.com/user/repo.gitShow more lines
+
+📌 19. Git Fetch vs Pull
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CommandWhat it doesgit fetchDownloads changes onlygit pullFetch + merge
+
+📌 20. GitHub Workflow (Real Project Flow)
+✅ Team Workflow
+
+Clone repo
+Create feature branch
+Work on code
+Commit changes
+Push branch
+Create Pull Request
+Code review
+Merge to main
+
+
+📌 21. Pull Requests (PR)
+Used to:
+
+Review code
+Discuss changes
+Merge safely
+
+PR Flow:
+Feature branch → Pull Request → Review → Merge
+
+
+📌 22. Forking Workflow
+Used in open-source projects.
+
+Fork repo
+Clone fork
+Create branch
+Push changes
+Open PR to original repo
+
+
+📌 23. Git Rebase
+Rebase rewrites history.
+Shellgit rebase mainShow more lines
+✅ Merge vs Rebase
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MergeRebasePreserves historyLinear historySaferCleaner
+
+📌 24. Cherry-pick
+Apply single commit from another branch.
+Shellgit cherry-pick <commit_hash>Show more lines
+
+📌 25. Git Aliases
+Shellgit config --global alias.co checkoutgit config --global alias.br branchgit config --global alias.cm "commit -m"git config --global alias.st statusgit config --global alias.lg "log --oneline --graph --decorate --all"Show more lines
+
+📌 26. Git Best Practices
+
+✅ Commit small changes
+✅ Write meaningful commit messages
+✅ Use branches
+✅ Pull before push
+✅ Do not commit secrets
+
+
+📌 27. Common Git Errors & Fixes
+❌ Push rejected
+Shellgit pull --rebasegit pushShow more lines
+❌ Detached HEAD (accidentally checked out a commit)
+Shellgit checkout mainShow more lines
+
+📌 28. Git Interview Quick Notes
+
+Git is decentralized
+HEAD points to current branch/commit
+Merge conflict occurs on the same line
+git pull = fetch + merge
+revert is safer than reset

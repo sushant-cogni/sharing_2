@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA</title>
+</head>
+<body>
+    <main>
+    
+    <div id="errorBox" role="alert" aria-live="assertive" style="display: none;">
+        
+        <img src="warning-icon.png" alt="" aria-hidden="true">
+        
+        <p id="errorMsg">Your password is too short.</p>
+        
+        <button onclick="closeAlert()" aria-label="Close Alert"> X </button>
+    </div>
+
+    <form>
+        <label for="pwd">Password:</label>
+        <input type="password" id="pwd" aria-describedby="errorMsg">
+    </form>
+
+</main>
+</body>
+</html>

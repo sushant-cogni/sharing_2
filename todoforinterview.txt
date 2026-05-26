@@ -1,0 +1,106 @@
+
+HTML
+
+anchor target types,
+
+what is inline-block
+
+mouse events and their differences like onmouseleave, onmouseout, onmouseenter, onmouseover
+
+what is the output of the event.key inkeyevents.
+
+pattern validations 
+
+difference between WebSQL and IndexDB
+
+
+CSS
+
+what are the new things came in css3
+
+JS
+
+what they added in es6
+textcontent vs innertext
+event bubbling and capturing
+event delegation
+
+flow of event loop from docs
+
+usecases of generators
+
+debouncing
+throttle
+
+
+TS 
+
+Decorators
+
+
+Java
+
+Java 8 features
+Real life examples for 4 pillars of java
+Solid Principles
+Design patterns with examples
+Why Strings are immutable in Java
+
+
+
+How to test our project, why are we using localhost:27018 in mongocompass
+
+HTML & JS stage 1 notes 
+
+Mongodb
+
+Why BSON if we are using JSON
+
+
+
+
+
+Project 
+
+Why there is a scanner option on eventdetails tab
+View ticket is showing error
+Why are we using http server over express server
+why constants and .env both files are there
+terms file in admin frontend components
+how the data is updating to the mongodb if we update in store
+
+seed file helper functions logics
+appfeedbackmodel and feedbackmodel difference
+
+eventSortPipeline() form lib/eventTime used in admin/service/getPaginatedevent - all code of eventTime
+sanitizeHTML used in updateTerms method in consentserviece
+eventcard images logic 
+how the userdetails are getting saved?
+
+
+All folder structures, needs 
+
+root folder files and there need,use
+
+
+Main.tsx file in react
+
+
+
+
+Revision with interview Questions
+HTML5 , HTML 
+CSS, CSS3
+JS
+TS
+
+React
+
+NodeJs
+Express Js
+MongoDB
+
+github
+docker
+Jenkins,ci/cd,devops
+Cloud

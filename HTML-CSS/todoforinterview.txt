@@ -1,0 +1,38 @@
+
+HTML
+
+anchor target types,
+
+what is inline-block
+
+mouse events and their differences like onmouseleave, onmouseout, onmouseenter, onmouseover
+
+what is the output of the event.key inkeyevents.
+
+pattern validations 
+
+difference between WebSQL and IndexDB
+
+
+CSS
+
+what are the new things came in css3
+
+JS
+
+what they added in es6
+textcontent vs innertext
+event bubbling and capturing
+event delegation
+
+flow of event loop from docs
+
+usecases of generators
+
+debouncing
+throttle
+
+
+TS 
+
+Decorators
