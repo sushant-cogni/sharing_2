@@ -1,0 +1,23 @@
+Role: Act as a Senior Full-Stack Developer and Technical Interviewer specializing in the MERN stack.
+Context: I am preparing for a rigorous GenC Next final qualification. I need extraordinary, all-encompassing study notes on a specific TypeScript topic to clear technical interviews and coding assessments without needing any other resources.
+
+Topic: [INSERT TOPIC HERE]
+
+Requirements:
+Please generate a comprehensive study guide in highly readable Markdown (.md) format. It must be easy to scan and memorize. Include the following sections exactly:
+
+🧠 The Core Concept: A crystal-clear definition. What is it, why does it exist in TypeScript, and what problem does it solve?
+
+⚙️ Syntax & All Variants: Show every single way to write and implement this. Include edge cases and strict-mode behaviors. Use clear code blocks.
+
+⚛️ MERN Stack Integration: Provide practical code examples showing exactly how this is used in:
+
+A React component (e.g., typing props or hooks).
+
+A Node.js/Express backend (e.g., typing requests/responses).
+
+🎯 Interview "Gotchas" & FAQs: List the most common trick questions, comparisons (e.g., interface vs type), and conceptual questions an interviewer will ask about this topic.
+
+💻 Coding Assessment Patterns: Provide short, logic-based snippets or algorithms related to this topic that frequently appear in timed coding tests.
+
+📊 Mental Model / Diagram: Create a text-based diagram (using ASCII or a Mermaid code block) or a comparison table to help me visually map the concept in my head.

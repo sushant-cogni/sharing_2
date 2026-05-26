@@ -1,0 +1,791 @@
+Now we're going to
+00:27:35 be using Neon. It's completely free.
+00:27:37 We're going to create a database for
+00:27:38 this project. Now to create a Neon
+00:27:40 database, I want you to sign up to your
+00:27:43 account. I already have an account so I
+00:27:45 am going to just log into mine. I
+00:27:47 recommend signing up with GitHub though.
+00:27:49 Now when you're here, you want to click
+00:27:51 on new project and you want to give it a
+00:27:53 name. I'm going to call this movie watch
+00:27:55 list API. Then we're going to keep the
+00:27:58 Postgress version as it is. We're going
+00:28:00 to choose AWS and the region is going to
+00:28:03 be AWS US West because that's the
+00:28:06 closest that I have to myself. But you
+00:28:08 choose wherever it's closest to where
+00:28:10 your users or the consumers of your API
+00:28:13 are going to exist. Now I'm going to
+00:28:14 click here create and it's going to
+00:28:16 create a project for us. So that quick
+00:28:19 we already have a database. Now this
+00:28:21 database is completely empty. If I go
+00:28:23 here to tables you see there's no tables
+00:28:25 over here. And we could create the
+00:28:27 tables by clicking here and just
+00:28:29 clicking create table. And then it will
+00:28:31 allow you to do that. But we're going to
+00:28:32 do it a bit differently. When you're
+00:28:34 dealing with uh databases and your APIs,
+00:28:37 it is highly recommended that you work
+00:28:39 with what is known as an ORM. An ORM is
+00:28:42 a tool that lets you interact with your
+00:28:44 database using a JavaScript objects
+00:28:47 instead of having to write raw SQL
+00:28:49 queries, for example. And that's great
+00:28:51 because a lot of like vulnerabilities in
+00:28:54 your API comes from people back in the
+00:28:57 day having to write manual SQL queries.
+00:28:59 And nowadays with ARMS, you can do it
+00:29:01 super simply. You don't need to learn
+00:29:03 SQL or any other kind of uh language
+00:29:06 used for databases. You can just write
+00:29:07 everything in JavaScript or TypeScript
+00:29:09 inside of your API and it will handle it
+00:29:11 for you. And there's a bunch of
+00:29:13 different orms that you can use. In our
+00:29:15 case, we're going to be using one of the
+00:29:17 most popular orms out there called
+00:29:19 Prisma. Now, Prisma has been around for
+00:29:21 I don't know how long, like so much
+00:29:23 time. Uh and it's one of the best out
+00:29:25 there. So, I recommend using them. And
+00:29:27 it's database agnostic meaning that you
+00:29:29 can use Prisma for a Postgress SQL
+00:29:31 database or for example for MongoDB
+00:29:34 whatever you want to use you can use
+00:29:35 Prisma and that's what we're going to be
+00:29:37 using. So I'm going to come back over
+00:29:38 here and what we want to do is we want
+00:29:40 to set up the database in our project.
+00:29:42 To do that I'm going to open up our
+00:29:43 terminal and I want to first run the
+00:29:45 command npx prisma init. Now, if you
+00:29:49 don't have Prisma installed inside of
+00:29:50 your computer, it's going to ask, do you
+00:29:52 want to install Prisma? And you press Y
+00:29:55 and press enter. Then it's going to set
+00:29:57 up Prisma inside of your project. You
+00:29:59 see, it is fetching a bunch of stuff and
+00:30:01 it's going to create the necessary
+00:30:03 folders for Prisma to exist in our
+00:30:06 project. Now, it's finished. And you can
+00:30:08 see that what it did is it created a
+00:30:09 Prisma.config. It created a Prisma
+00:30:13 folder and it also installed and it
+00:30:17 didn't install the Prisma package inside
+00:30:20 of our project. So that's something we
+00:30:22 do have to do. So to do that I want to
+00:30:24 install two different packages. The
+00:30:25 first one is going to be Prisma. So to
+00:30:28 install Prisma, it's going to be a dev
+00:30:30 dependency. So I'm going to say savedev
+00:30:32 and we're installing the Prisma raw
+00:30:34 Prisma. But we also want to install
+00:30:36 another package called Prisma client.
+00:30:38 And Prisma client is going to help us uh
+00:30:41 have autocomp completion whenever we're
+00:30:44 working with our different tables. Now
+00:30:46 to install Prisma client, we do npm
+00:30:48 install prisma/client.
+00:30:51 Perfect. Now as that's done, you'll see
+00:30:53 that we are ready. The prisma.config
+00:30:56 doesn't have any errors anymore cuz we
+00:30:58 installed the package and everything is
+00:31:00 good to go. Now in this Prisma folder,
+00:31:02 you see that there is a schema.prisma.
+00:31:05 And what this is is a schema file for
+00:31:08 our database. Now, you might not be
+00:31:10 seeing this this file with all of this
+00:31:12 syntax highlighting like I have, and
+00:31:14 that's because I have an extension
+00:31:16 installed. The extension I have is the
+00:31:18 Prisma extension, and I highly recommend
+00:31:20 installing it because you'll be able to
+00:31:22 read uh Prisma files such as the
+00:31:24 schema.prisma with a lot more ease. Now,
+00:31:28 one of the things that you need to do in
+00:31:30 order to connect your database that you
+00:31:33 created over here with your project is
+00:31:36 to connect it to Prisma. And Prisma
+00:31:38 makes it super easy. They allow you to
+00:31:40 create an environment variable called
+00:31:42 database URL and you pass in the URL of
+00:31:46 your database so that it connects both
+00:31:48 of them. To access the URL, you go to
+00:31:50 the dashboard and you see that here it
+00:31:52 has a connect section. You click on
+00:31:55 connect and it has this beautiful URL
+00:31:57 that you can just copy. Now, where do we
+00:31:59 put this URL? Well, you see it requires
+00:32:03 Prisma requires that we have an
+00:32:05 environment variable called database URL
+00:32:07 that will contains that. Now, if you're
+00:32:09 not familiar with environment variables,
+00:32:10 they're just variables that we can
+00:32:12 create for our project that aren't
+00:32:14 directly part of our code. Now, why is
+00:32:16 why is that important? Because if it's
+00:32:18 something that is sensitive such as for
+00:32:20 example the database URL or API keys and
+00:32:22 so on, you don't want to push this code
+00:32:25 to GitHub when you uh when you maybe
+00:32:28 send it to someone or you want to
+00:32:30 publish it to be open source. You want
+00:32:31 to keep that hidden. So you create
+00:32:33 environment variables where as you are
+00:32:36 running your code in development or even
+00:32:37 in production it will uh work however it
+00:32:41 won't be visible to the client. Now you
+00:32:43 see how it automatically created thisv
+00:32:46 file and it put this variable over here.
+00:32:48 This is how aenv file looks like. It
+00:32:50 will contain uh variables with the name
+00:32:52 just like this and an equal sign and
+00:32:54 then a string to represent the value of
+00:32:57 that variable. Now this database URL
+00:32:59 that they gave us here isn't the one
+00:33:01 that we want. We want to delete this and
+00:33:03 replace it with the one that we copied
+00:33:06 from neon. So I'll just paste this over
+00:33:09 here and we should be good to go. Now,
+00:33:11 in order to get thev file to work inside
+00:33:14 of our NodeJS project, I want to import
+00:33:18 at the top over here a new package that
+00:33:20 we haven't installed. It's going to be
+00:33:22 the env package. So, I'm going to
+00:33:24 install.
+00:33:27 Now, when that's done installing, what
+00:33:29 we want to do is we want to import from
+00:33:32 the envig
+00:33:36 function. Then, somewhere in our app,
+00:33:38 I'll do it before we create our app over
+00:33:39 here. I'm going to call this config
+00:33:42 function. Now, we have to create the
+00:33:45 part of our project that is going to
+00:33:48 configure the connection to our
+00:33:50 database. So, I'm going to create here a
+00:33:52 folder called config. And inside of it,
+00:33:54 I'll create a file called DB.js.
+00:33:58 Now, in this DB file, what we want to
+00:34:00 import is the Prisma client package.
+00:34:04 Now, we're going to create an instance
+00:34:07 of this Prisma client. Now, if you're
+00:34:10 not familiar yet with Prisma, the Prisma
+00:34:12 client library is going to help us have
+00:34:15 autocomp completion and type definition
+00:34:17 for all of our tables. So, when we
+00:34:19 define here in our tables, when create
+00:34:23 each table, they're going to have
+00:34:24 columns and types in for each of those
+00:34:27 columns. And it would be nice to have
+00:34:28 autocomp completion and recognition of
+00:34:30 what those columns and tables are inside
+00:34:32 of our project. And you'll see that
+00:34:34 because of Prisma client, we're going to
+00:34:36 have that perfectly. Now what I want to
+00:34:38 do is I want to create that instance by
+00:34:41 saying const Prisma is equal to new
+00:34:43 Prisma client. And in here we're going
+00:34:45 to define just one thing which is we
+00:34:48 want to add a simple configuration to
+00:34:50 this Prisma client which is going to
+00:34:52 help us not break our entire project if
+00:34:54 there's an issue with our database. So
+00:34:56 with this log property over here, you
+00:34:58 can specify what kind of logs you want
+00:35:00 to see. And depending on your
+00:35:03 environment, if it's either development
+00:35:04 or production, you want to allow you to
+00:35:07 see different kinds of logs. So what do
+00:35:09 I mean by that? Well, I'm going to come
+00:35:11 here to ourv and I'm going to create a
+00:35:15 new variable. The variable I want to
+00:35:16 make is the node env. And I always
+00:35:20 recommend you having that. Now, what is
+00:35:22 the node env? It stands for node
+00:35:24 environment and it's you're going to set
+00:35:27 this to be either development or
+00:35:29 production. Now because we are in
+00:35:31 development, I'm going to set this to
+00:35:33 development. But when we deploy this, we
+00:35:35 would change this to production. Now why
+00:35:37 do we need to know this? Well, we need
+00:35:39 to know this because depend in in a lot
+00:35:41 of different parts of our app, depending
+00:35:43 on whether or not we are in development
+00:35:45 or production, we're going to do things
+00:35:48 differently. For example, with this log
+00:35:50 configuration here, we're going to tell
+00:35:51 our database that if we are in uh
+00:35:54 development, which we can access an a an
+00:35:57 environment variable by saying process
+00:35:59 enviable.
+00:36:02 So, it's node env. If that's equal to
+00:36:05 development, then I want to see the
+00:36:09 query issues, any errors, and any
+00:36:12 warnings. Now, if this is in production,
+00:36:16 I want to see the errors. Now, if you're
+00:36:18 not that familiar with this, don't
+00:36:20 worry. Just put this here. It will help
+00:36:21 you overall uh get better logs using
+00:36:25 Prisma. Now, the next thing we want to
+00:36:26 do in this file is create a function
+00:36:29 that is going to connect our database
+00:36:31 and a function that is going to
+00:36:34 disconnect our database. So, I'm going
+00:36:36 to create here disconnect. Now, both of
+00:36:39 these functions are going to be async
+00:36:41 because connecting to a database is an
+00:36:43 asynchronous operation. Now to connect
+00:36:45 to our external database what we do is
+00:36:49 we apply a try and catch and in our try
+00:36:53 we await and we call prisma.connect
+00:36:57 just like this. Now I'm going to put a
+00:36:59 money sign over here as well cuz that's
+00:37:01 what we need. And after connecting we're
+00:37:04 going to console.log a message saying DB
+00:37:08 connected via Prisma. Then I'm going to
+00:37:12 copy this in case there's an error. And
+00:37:14 if there's an error connecting to our
+00:37:16 database, I'm going to console. And I'm
+00:37:18 going to say that there was a database
+00:37:21 connection error. And I'll point out
+00:37:24 what that error is. So error dossage.
+00:37:27 Perfect. And because we are running this
+00:37:29 locally, I want to exit. And when you
+00:37:33 say process.exit
+00:37:35 one, what happens is it will immediately
+00:37:37 stop our Node.js JS app and tell our
+00:37:40 system that it ended because of an
+00:37:42 error. Perfect. Now we're done with our
+00:37:44 connect DB and we can build the
+00:37:46 disconnect. The disconnect is a bit
+00:37:48 easier. We're going to copy this over
+00:37:49 here and just paste it here. And all we
+00:37:51 want to do is just call the disconnect
+00:37:54 function. And then at the bottom here,
+00:37:55 I'm going to export three things. I want
+00:37:58 to export the Prisma client that we
+00:38:00 created. We want to export the connect
+00:38:02 DB function and the disconnect DB
+00:38:05 function. Now we can come to our
+00:38:08 server.js and at the top over here we're
+00:38:11 going to import the connect db from dot
+00:38:15 /config/db.js.
+00:38:18 We're also going to import the
+00:38:19 disconnect db. And one of the first
+00:38:21 things we're going to do together with
+00:38:23 the config here is we're going to
+00:38:24 connect the db. Perfect. Now whenever
+00:38:27 you connect to a database like the way
+00:38:29 we did over here, you need to gracefully
+00:38:32 handle cases in which there were issues
+00:38:35 because we are connecting to the
+00:38:37 database but when the app breaks we want
+00:38:40 to disconnect from the database so that
+00:38:41 there is no memory leaks. So to do that
+00:38:45 we want to handle three different
+00:38:46 situations in our computer's process
+00:38:49 that could lead to us wanting to
+00:38:51 disconnect our database. Now there are
+00:38:54 three situations in which I recommend
+00:38:56 you doing this and I always copy and
+00:38:58 paste it for my own projects. I do it
+00:39:00 the same for all of them. So if you want
+00:39:03 you can just copy and paste this over
+00:39:05 over here as well and I'll go over what
+00:39:07 the three of them are. So there's three
+00:39:08 different situations in which we want to
+00:39:10 handle disconnect your database. If
+00:39:13 there is an unhandled rejection now this
+00:39:15 is an event that can happens in happen
+00:39:18 in our process and what we're doing here
+00:39:19 is we're listening to this event. Now in
+00:39:22 a Node.js server when you're running it
+00:39:25 and you do a process.on and you pass the
+00:39:27 name of a specific event such as the
+00:39:30 unhandled rejection it's going to listen
+00:39:31 to this happening and when it happens it
+00:39:34 does something. Now what are the events
+00:39:36 that we have over here? Well the first
+00:39:37 one is unhandled rejection and this will
+00:39:40 catch any unhandled promise errors that
+00:39:43 we have in our app. So if this happens
+00:39:45 for any reason, for example, when
+00:39:48 there's an issue connecting to our
+00:39:49 database, it will actually be caught and
+00:39:52 it will run this function where we're
+00:39:53 going to console lock the error and
+00:39:55 we're going to end our server. We're
+00:39:57 going to literally exit our server and
+00:39:59 at the same time disconnect from our
+00:40:01 database so there's no issues. Same
+00:40:03 thing with uncaught exceptions. If
+00:40:05 there's any uncaught exceptions, uh
+00:40:06 we'll do that. And if there is any
+00:40:08 issues with sig term which is a signal
+00:40:12 uh that is when your app is stopped in
+00:40:14 production it will gracefully shut down
+00:40:16 our service and the database before
+00:40:19 exiting normally. Now I don't re I don't
+00:40:22 think you need if you're a beginner and
+00:40:23 you've never seen this before I don't
+00:40:24 think you need to be obsessing over this
+00:40:26 at all. I would recommend just having
+00:40:27 this because this is the first step
+00:40:29 you're going to have to properly
+00:40:31 handling errors and issues in your
+00:40:33 server. If you don't have stuff like
+00:40:34 this, you might be opened to
+00:40:36 possibilities and situations in which
+00:40:39 can break your API. So this is all we
+00:40:42 want to do. And now we're kind of ready
+00:40:43 to start building our database tables.
+00:40:46 Now, how do we do that? Well, to create
+00:40:48 a table, like I said, you could do it
+00:40:50 manually by coming here and clicking the
+00:40:52 create table, but most likely I
+00:40:54 recommend that you have a structured uh
+00:40:57 type definition for each column that
+00:40:59 you're going to have for each table. and
+00:41:01 you should be using a unified language
+00:41:04 to do that. Now, if you're using Prisma,
+00:41:06 Prisma is the language for that. There
+00:41:08 is a Prisma file that comes with
+00:41:10 installing Prisma that is a schema and
+00:41:12 in here you can define the structure of
+00:41:14 your tables. If you're using something
+00:41:16 else, for example, MongoDB with mongus,
+00:41:19 you would have the same kind of
+00:41:21 behavior. Now, with this schema.prisma,
+00:41:24 what we're going to do is we're going to
+00:41:26 define the different tables we're going
+00:41:28 to have. Now, we'll define all of them
+00:41:30 at once, and it's going to help us have
+00:41:32 an idea of what kind of data we're going
+00:41:35 to be playing with in this project. The
+00:41:37 first one is let's think about what this
+00:41:40 API is going to have. It's going to
+00:41:41 allow there to be users, right, who can
+00:41:44 add movies to a watch list. So, right
+00:41:46 off the bat, I can think about a table
+00:41:49 for a user, then a table for movie,
+00:41:53 right? because a user adds movies and
+00:41:55 then a table for each user's watch list
+00:41:59 and I can think of those three
+00:42:01 interacting with each other in different
+00:42:03 ways. So we'll start off with the user
+00:42:06 model. So to create a table you define a
+00:42:09 model. You give it a name such as user
+00:42:12 and you create an object out of it. Then
+00:42:14 inside of here you need to define the
+00:42:16 fields of this table. Now a user is
+00:42:19 going to have by default and by the way
+00:42:21 every other table is going to have this
+00:42:22 an ID. Now an ID is going to have a type
+00:42:25 of string and in Prisma to define the
+00:42:28 type you give it just like this but with
+00:42:31 an ID it has a very specific uh extra
+00:42:34 thing that you need to do. You defined
+00:42:36 that it is an ID by adding this
+00:42:37 decorator over here called at id and you
+00:42:40 give it a default value by utilizing a
+00:42:43 uyu ID function. Now it might be a bit
+00:42:46 confusing but all we're doing here is
+00:42:48 we're defining the user table. We're
+00:42:50 saying that it has one column called ID.
+00:42:52 It is a string and we're letting Prisma
+00:42:54 know that this is the ID of this table.
+00:42:56 And to whenever this a new user is
+00:42:59 created to generate a UYU ID for this
+00:43:02 user. Uu ID is just a standard of ids
+00:43:05 that is used in APIs and in different uh
+00:43:08 database tables. it is going to generate
+00:43:10 a random ID for this user and it's most
+00:43:12 likely going to be completely unique for
+00:43:14 each user. Now the next thing that we
+00:43:16 want to do for a user is they're going
+00:43:18 to have a name, right? When you create a
+00:43:19 user, a user has a name and a username
+00:43:22 has a type of string. Now the next thing
+00:43:25 is they're going to have an email. An
+00:43:27 email is also going to be a string. But
+00:43:28 we can add more properties to each
+00:43:30 column. For example, name is just a
+00:43:33 string and email is a string as well.
+00:43:35 But we shouldn't allow there to be two
+00:43:38 users with the same email. So I'm going
+00:43:40 to add the unique property here that is
+00:43:43 going to apply to the user model. Then
+00:43:46 we're going to add a password field. And
+00:43:49 a password is also going to be a string.
+00:43:51 Now the next thing is we want to keep
+00:43:53 track of whenever each user was created.
+00:43:56 So I'm going to add a created at field.
+00:43:58 And this is one of the other fields
+00:44:00 similar to ID where you're going to have
+00:44:01 it on every single uh table that you
+00:44:03 create. And it's going to have a very
+00:44:05 specific definition other than just like
+00:44:07 string. Now a created at is of type date
+00:44:11 time. It will always default to now so
+00:44:15 that when you add a new user it will
+00:44:17 automatically save the created at field
+00:44:19 to be the current time. And this should
+00:44:21 be good to go. Perfect. Now we have
+00:44:23 successfully created the model user. Now
+00:44:26 what do I do with this? Because I
+00:44:28 defined this over here but it doesn't
+00:44:30 exist in our neon tables. Right? If I
+00:44:33 refresh this, I don't see this uh in the
+00:44:35 database that we have uh being hosted in
+00:44:37 the cloud. Now, in order to actually
+00:44:39 send the changes that we make to this
+00:44:42 schema and have it be uh permanent in
+00:44:46 our table, we have to run the following
+00:44:48 command. I'm going to run npx prisma
+00:44:51 migrate, which migrate is used for
+00:44:54 sending the changes that you have
+00:44:56 locally into your hosted database. Then
+00:44:59 we're going to say that this is not in
+00:45:01 production. This is in development. So
+00:45:02 I'll say dev and then you have to give a
+00:45:04 name. Now I'm adding the users table. So
+00:45:07 I'm going to give a name to this
+00:45:08 migration. I'm going to call it add
+00:45:10 users table. And now if I press enter,
+00:45:13 it should send but we get an error. It
+00:45:15 says that the environment variable
+00:45:17 wasn't it's missing. So what I think
+00:45:19 might have happened is we forgot to go
+00:45:21 to our prisma.config. And yeah, that's
+00:45:23 definitely it. We forgot to import over
+00:45:26 here the env package. So if we import
+00:45:30 over here slashconfig then we should be
+00:45:34 good to go. Now there's actually one
+00:45:35 more thing I want to do right very
+00:45:37 quickly and it is to you see this
+00:45:40 generator over here. This is just
+00:45:43 defining how we're going to generate the
+00:45:46 types for our Prisma table. Now it's not
+00:45:48 that important for you if you're not uh
+00:45:50 really into uh you know if you don't
+00:45:53 really care about the really really deep
+00:45:55 details of this. What I would recommend
+00:45:57 is deleting this output so you don't
+00:45:58 have to have a folder with all your
+00:46:00 types on your project and also changing
+00:46:03 this provider to be the JS one just like
+00:46:05 this. Now what we can do is we can run
+00:46:08 the command again and it should be able
+00:46:11 to send all of our changes to our hosted
+00:46:14 DB. There's any issues we'll deal with
+00:46:16 it. As you can see it says it was
+00:46:18 successful. We applied the migration at
+00:46:20 users table. But there's only one way to
+00:46:22 actually check it. We'll go back here
+00:46:24 and we're going to refresh this. And if
+00:46:26 everything worked, we should be able to
+00:46:28 see two tables. One for user, which is
+00:46:30 the one we just created with all of the
+00:46:32 columns that we defined and one for
+00:46:34 Prisma migrations. This one is generated
+00:46:36 automatically is every time we make any
+00:46:38 changes to our database, it is going to
+00:46:40 save with the name and when that
+00:46:42 happened. Perfect. So now we can come
+00:46:44 back here and we need to do one more
+00:46:46 thing. Since we're using Prisma client,
+00:46:48 we need to generate the types for this
+00:46:51 table. So that I can easily, for
+00:46:53 example, whenever I want to add data to
+00:46:55 our database, I could come to this route
+00:46:57 over here and say something like this.
+00:46:59 Uh I don't know, users docreate, you
+00:47:03 know, and then add the user. Now, this
+00:47:05 is obviously not how we're going to do
+00:47:06 it, but it's so that we have that uh
+00:47:09 type inscribed in us. So what we need to
+00:47:11 do is we need to generate our types
+00:47:14 after we made those changes. So on top
+00:47:16 of making this migration every time we
+00:47:18 make a change in our tables, we also
+00:47:20 need to run npx prisma generate and it's
+00:47:24 going to generate the types for us. Now
+00:47:26 as you can see it generated everything
+00:47:28 and we should be good to go. Now again
+00:47:30 we don't have anything yet uh visible
+00:47:33 for us to to play around with. I want to
+00:47:35 create all the other tables before we
+00:47:38 start using them. Now, since I just went
+00:47:40 over how to create this first table, for
+00:47:42 the other ones, I'm just going to paste,
+00:47:44 copy and paste the definition for them
+00:47:46 and go over what each field is so that
+00:47:48 we don't waste time uh writing each one
+00:47:50 individually. So, the next table we want
+00:47:52 to make is the movie table. And for a
+00:47:54 movie, it's going to have an ID just
+00:47:56 like the user had one. It's going to
+00:47:58 have a title, which is a string, an
+00:48:00 overview of the movie, which is also a
+00:48:02 string. But we can add this question
+00:48:03 mark to make it optional because
+00:48:06 sometimes you there's no overview. Maybe
+00:48:08 you don't want to pass an overview. I
+00:48:09 put this just as an example for you guys
+00:48:11 to see how optional fields work like.
+00:48:13 Then we have the year in which the movie
+00:48:14 was released which is an integer. Uh any
+00:48:17 genres that match this specific uh movie
+00:48:20 which is an array of strings and you
+00:48:23 don't need to pass an array if there's
+00:48:25 no genres. It will always default to an
+00:48:27 empty array. Uh we also have runtime
+00:48:30 which is just how long the movie is and
+00:48:32 it's an integer that is optional. A URL
+00:48:34 for the poster of the movie. We're not
+00:48:35 doing anything client side related so
+00:48:37 you guys won't see this. We're going to
+00:48:39 add some fake data to to to mock this
+00:48:41 API but uh you can put a URL to the
+00:48:43 poster and then who made this movie and
+00:48:46 also when it was created. So those are
+00:48:49 the fields that we want for the movie
+00:48:51 table. We can make the migration now so
+00:48:53 that we can see it appearing over here.
+00:48:56 But I'm also going to add the other
+00:48:57 table as well. Now the next table is
+00:48:59 going to be the watch list table. Now,
+00:49:01 we're going to call it watch list item
+00:49:04 because it's an item like a part of the
+00:49:05 watch list that each user might have.
+00:49:08 And it has the following fields. It's
+00:49:10 going to have an ID, a user ID, which is
+00:49:12 the ID of the user who is adding this
+00:49:15 movie to the watch list. Then a movie
+00:49:17 ID, which is the ID of the movie that is
+00:49:20 being added, then a status, meaning have
+00:49:23 you watched this movie or you're
+00:49:24 planning to watch this movie or not?
+00:49:26 Now, this status has a specific type.
+00:49:28 It's called watch list status. And it's
+00:49:31 not string, it's not int, it's not
+00:49:33 datetime. It's a custom type that we can
+00:49:35 define. To define a custom type like
+00:49:38 this one, this is an enum, which means
+00:49:41 you can either have uh you're planning
+00:49:43 on watching this movie, you have watched
+00:49:45 it, you're watching it right now or you
+00:49:46 are not going to watch it. So to define
+00:49:48 that enum, you can do something like
+00:49:50 this. You define an enum, give it a name
+00:49:52 and give the options. So there's
+00:49:54 planned, watching, completed, and
+00:49:56 dropped. And that's what the status is.
+00:49:58 And you can make it be you can insert
+00:50:01 custom enums into the types of columns
+00:50:04 in your table. And you can also default
+00:50:06 it to something. So every movie I add to
+00:50:08 the watch list is going to be defaulted
+00:50:10 to planned, which means I'm planning on
+00:50:11 watching it. Then there's a rating,
+00:50:13 meaning you can give a rating, any notes
+00:50:15 you gave to the movie you added, and
+00:50:17 when this added item was created or
+00:50:20 updated. Now, we're almost done, but
+00:50:23 there's just one minor thing I want to
+00:50:25 change. Each of these tables have
+00:50:27 specific relations to each other. And
+00:50:29 this is not a course on relational
+00:50:31 databases or databases in itself. It's
+00:50:34 just a part of building an API. So I
+00:50:36 won't go too much in depth onto it,
+00:50:38 especially because I know a lot of you
+00:50:40 guys might already be familiar with
+00:50:41 this. But we can establish relationships
+00:50:43 between each individual table. For
+00:50:46 example, a user creates a movie. So a
+00:50:49 movie has to have some reference to the
+00:50:52 user who created it. Same thing with a
+00:50:54 watch list. A watch list was created by
+00:50:56 a user, but it also is like contains
+00:50:59 movies. So there is a reference in the
+00:51:01 watch list table to a user and to a
+00:51:04 movie. And we already see those
+00:51:07 references appearing here. For example,
+00:51:09 a watch list item has a user ID and a
+00:51:13 movie ID, which is a reference to a
+00:51:16 movie and a user. On top of that, a
+00:51:18 movie has a created by which right now
+00:51:21 looks a bit just like a string, but a
+00:51:23 user can create a movie, right? So,
+00:51:26 we're going to this is also the ID of
+00:51:29 the user who created this movie. Now, to
+00:51:32 establish that relationship, we have the
+00:51:34 ID fields, but we need to do one more
+00:51:36 thing. For example, let's start with the
+00:51:37 watch list item because it's the easiest
+00:51:39 relationship to understand, right? A
+00:51:41 user uh adds a movie to a watch list. So
+00:51:44 a watch list has a relation to a user
+00:51:46 and a movie. In here we can establish
+00:51:50 the relations. Now the first relation is
+00:51:52 to the user table. So we'll create a
+00:51:54 user field with a type of user. And we
+00:51:56 use the relation function here to
+00:51:59 establish that we're going to connect
+00:52:02 the watch list item table by utilizing
+00:52:05 one of its fields with one of the fields
+00:52:08 in the user table. The fields we're
+00:52:09 going to connect is the user ID field in
+00:52:12 the watch list item table with the ID
+00:52:14 field in the user table because that's
+00:52:16 what it is, right? The ID of an user is
+00:52:19 the user ID in the user ID table in the
+00:52:22 watch list item table. So we established
+00:52:24 that in the watch list item table, the
+00:52:26 field user ID references the field ID
+00:52:32 from the user table. So this field is
+00:52:34 referring to this one. And one of the
+00:52:36 cool things we can do is also determine
+00:52:38 what happens when for example a user is
+00:52:42 deleted. So when a user is deleted and
+00:52:44 there is a watch list item with a user
+00:52:47 ID equal to the ID of that user that got
+00:52:49 deleted from our table then maybe this
+00:52:52 watch list item should also be deleted
+00:52:53 so that we don't have lingering data
+00:52:56 when people delete their accounts. To do
+00:52:57 that you can add an ondelete property
+00:53:00 called cascade and cascade will do that.
+00:53:02 If you think of what the meaning of the
+00:53:04 word cascade means, it will have a
+00:53:06 cascade like uh behavior where if one of
+00:53:09 the items in one of the tables is
+00:53:10 deleted, all of the refer all of the
+00:53:13 items that have a relation to that item
+00:53:14 will be deleted on other tables. Now,
+00:53:16 we're going to do the exact same thing
+00:53:18 for the movies. So, I'll create here a
+00:53:20 movie. It's going to be of type movie
+00:53:22 and it's going to be a movie field. Now,
+00:53:25 it relates to the movie ID field in this
+00:53:28 table and it relates to the ID field in
+00:53:31 the movie table. Same thing. Now, we're
+00:53:34 going to do the same the same thing for
+00:53:36 both the movie and the user tables, but
+00:53:38 they're a bit different. For example, in
+00:53:40 the movie table, we want to um add a
+00:53:44 relation for the user because this
+00:53:48 created by field over here refers to the
+00:53:51 movie creator. So I'm going to create a
+00:53:53 field here called creator. And I'll just
+00:53:56 make this not have this much space. And
+00:53:59 what this relation establishes here is
+00:54:02 it does the same thing we did before
+00:54:03 where it gets the created by field in
+00:54:06 the movie table and it refers to the ID
+00:54:08 field in the user table because this
+00:54:10 created by will be the ID of the user
+00:54:12 that created this movie. But it also
+00:54:14 adds this name over here. This is just a
+00:54:16 name for us to identify it. And we're
+00:54:19 going to use this name over here in the
+00:54:21 user table as well. Now the next thing
+00:54:22 is we're going to pass create a
+00:54:25 reference to the watch list. So a watch
+00:54:28 list item is a table that contains a
+00:54:31 user ID and a movie movie ID. Meaning
+00:54:33 that a user there are movies that users
+00:54:37 add to a watch list. And that means that
+00:54:39 in a movie there is a list of watch list
+00:54:43 items that refer to this movie. So
+00:54:47 there's going to be multiple watch lists
+00:54:49 that have this specific movie as part as
+00:54:52 as part of it. So we can access the all
+00:54:55 of the watch list items all the watch
+00:54:57 lists for a specific movie by accessing
+00:55:00 this field. Now we can do the exact same
+00:55:02 thing here on user. We can create the
+00:55:04 relations for user and the relations for
+00:55:07 user are similar to the other ones. A
+00:55:09 user will have movies that they created.
+00:55:11 That's how we establish this relation.
+00:55:13 and it will have watch lists that it
+00:55:15 added movies to. Now, I understand if
+00:55:17 you're a bit confused right now because
+00:55:19 this is a lot of database talk and we
+00:55:21 are getting to work on the APIs. If you
+00:55:24 are using a different database for this
+00:55:26 to to learn this or you don't really
+00:55:28 care about databases, you just want to
+00:55:29 focus on the ins and outs of building an
+00:55:32 API then I don't think it matters if you
+00:55:34 fully understand what we've done so far.
+00:55:37 This is all Prisma and Postgress SQL
+00:55:39 stuff. So if you want, I have a full
+00:55:41 course on Prisma in my channel uh where
+00:55:43 I go into a lot more detail than what
+00:55:45 I'm doing over here. But the bottom line
+00:55:46 here is that we created our tables. And
+00:55:48 what we want to do is we want to run
+00:55:50 those two commands that we already ran.
+00:55:53 The first one is to migrate, but now
+00:55:55 we're going to change the name to edit
+00:55:58 other tables. And you'll see there's an
+00:56:01 issue. First of all, it says watch list
+00:56:03 items is neither a built-in type nor
+00:56:06 refers to another model. So, hm, it it
+00:56:08 looks like we made a mistake here. And
+00:56:10 we did. We called watch list items
+00:56:12 instead of watch list item. Now, let's
+00:56:14 try again. Same same command. And if
+00:56:17 everything works right, we should be
+00:56:18 able to see our changes appearing.
+00:56:21 Perfect. Now, we should migrate. So, or
+00:56:23 we should generate. So, I'm going to run
+00:56:24 the generate command again. And we
+00:56:26 should be good to go. Now, let's go
+00:56:28 check to see if all the changes are
+00:56:29 done. If I go over here and refresh, we
+00:56:31 should see the user, movie, and watch
+00:56:34 list item tables appearing in our
+00:56:36 project. So, we're pretty much done with
+00:56:38 most of the stuff related to setting up
+00:56:40 the databases. Now, we can get started
+00:56:43 on actually building our fully
+00:56:45 implemented API endpoints. Okay, so the
+00:56:48 first group of endpoints that I want to
+00:56:51 create is what I always recommend you to
+00:56:53 start with when you're building your
+00:56:54 API. And of course, I'm talking about
+00:56:56 authentication. Now, authentication is a
+00:56:58 huge topic and we're going to go over
+00:57:00 everything that I think is reasonable
+00:57:02 for you to understand how to build a
+00:57:05 strong and secure API. And to do that,
+00:57:07 we're going to create another routes
+00:57:08 fold uh file in our routes folder and
+00:57:11 it's going to be for the authentication.
+00:57:13 So, we're going to create here an O
+00:57:15 routes file. We're going to copy what we
+00:57:18 have here and we're just going to paste
+00:57:19 it here. But, we're going to delete all
+00:57:21 of these routes that we created just as
+00:57:23 an example cuz we're going to kind of
+00:57:24 start it from scratch. So, one of the
+00:57:27 things that I want to already engrave in
+00:57:30 your minds right from the beginning is
+00:57:32 following a clean pattern for your APIs.
+00:57:35 And one of the patterns that we're going
+00:57:36 to be following here is creating
+00:57:39 controllers for all of your routes. Now,
+00:57:41 what is a controller? A controller is a
+00:57:43 function that is going to have the
+00:57:46 actual handling of what happens in that
+00:57:48 API route when that API route is hit.
+00:57:50 So, we could just write for example over
+00:57:53 here a function for each route. 

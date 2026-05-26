@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket.Io</title>
+  </head>
+  <body>
+    
+    <h2>Socket.io</h2>
+    <div>
+        <input type="text" name="msg" id="msg">
+        <button id="conBtn" >Connect</button>
+        <button id="sendBtn" >Send</button>
+        <div id="messages"></div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+        document.getElementById("conBtn").addEventListener("click",()=>{connect()})
+        document.getElementById("sendBtn").addEventListener("click",()=>{send()})
+        const messages = document.getElementById('messages');
+
+        const msg=document.getElementById("msg")
+
+        let socket=io();
+                
+        socket.on("client message",(msgg) => {
+            // console.log("Server : ",msgg)
+            
+            const item = document.createElement('li');
+            item.textContent = msgg;
+            messages.appendChild(item);
+        })
+
+        function connect(){
+            socket = io();
+        }
+
+        function send(){
+            // console.log("Sending the msg")
+            socket.emit("chat message",msg.value)
+            const item = document.createElement('li');
+            item.textContent = msg.value;
+            messages.appendChild(item);
+            msg.value=""
+        }
+
+    </script>
+  </body>
+</html>

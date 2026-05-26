@@ -1,0 +1,118 @@
+1. Overview & Setup (The Fundamentals)
+Core Concepts: What is TypeScript? Static vs. Dynamic typing. How it catches errors at compile-time rather than runtime.
+
+Compilation: The role of the TypeScript compiler (tsc). * Configuration: Understanding tsconfig.json. (Crucial settings to know: strict, target, module, outDir, rootDir, and jsx).
+
+2. Types & Type Inference
+Primitive Types: string, number, boolean, null, undefined, symbol.
+
+Special Types: any (and why to avoid it), unknown (the safer any), never (for functions that throw errors or infinite loops), void (for functions returning nothing).
+
+Data Structures: Arrays (number[] or Array<number>) and Tuples (fixed-length/type arrays).
+
+Type Inference: How TypeScript guesses the type if you don't explicitly declare it.
+
+3. Interfaces & Type Aliases (Highly Tested)
+Interfaces: Defining object shapes, optional properties (?), and readonly properties.
+
+Extending Interfaces: Using the extends keyword to inherit properties.
+
+Type Aliases: Creating custom types using the type keyword.
+
+Interface vs. Type: Knowing when to use which (a very common interview question).
+
+Index Signatures: Typing objects with dynamic keys (e.g., [key: string]: number).
+
+4. Functions
+Typing Functions: Defining parameter types and return types.
+
+Parameters: Optional parameters, Default parameters, and Rest parameters (...args).
+
+Function Overloading: Defining multiple signatures for a single function based on different arguments.
+
+5. Classes (Object-Oriented TypeScript)
+Access Modifiers: public, private, protected.
+
+Readonly Properties: Preventing modification after initialization.
+
+Getters and Setters: Intercepting access to object properties (get and set).
+
+Abstract Classes: Classes that cannot be instantiated directly and require subclasses to implement abstract methods.
+
+Implementing Interfaces: Enforcing that a class meets a specific contract (class User implements IUser).
+
+6. Generics (Crucial for Reusability)
+Basic Generics: Using <T> to create reusable functions, interfaces, and classes.
+
+Generic Constraints: Restricting generic types using extends (e.g., <T extends { id: number }>).
+
+Utility Types (Must-Know for React): * Partial<T> (makes all properties optional)
+
+Required<T> (makes all properties required)
+
+Readonly<T> (makes all properties read-only)
+
+Pick<T, Keys> (selects specific properties)
+
+Omit<T, Keys> (removes specific properties)
+
+Record<Key, Type> (creates an object type)
+
+7. Enums
+Numeric Enums: Default auto-incrementing enums.
+
+String Enums: Enums with explicit string values (better for debugging).
+
+Heterogeneous Enums: Mixing string and numeric (rare, but good to know).
+
+8. Advanced Types
+Union Types: Allowing multiple types (string | number).
+
+Intersection Types: Combining multiple types (TypeA & TypeB).
+
+Type Guards: Narrowing down types using typeof, instanceof, or custom type guard functions (using the is keyword).
+
+Type Assertions: Telling the compiler "I know better" using the as keyword (e.g., value as string).
+
+Literal Types: Restricting a variable to exact values (e.g., let direction: "left" | "right").
+
+9. Modules & Namespaces
+ES Modules: import and export syntax.
+
+Default vs. Named Exports: How to type them.
+
+Namespaces: (Less common in modern MERN stacks due to ES Modules, but included in your syllabus).
+
+10. TS with React (JSX Overview & Beyond)
+Typing Props: Using Interfaces or Types to define what props a component accepts.
+
+Typing Components: Standard functional components vs. React.FC (and why React.FC is often debated).
+
+Typing Hooks: * useState<Type>()
+
+useReducer (Typing State and Action payloads)
+
+useRef<HTMLInputElement>(null)
+
+Typing Events: Form events (React.FormEvent), Mouse events (React.MouseEvent), and Change events (React.ChangeEvent<HTMLInputElement>).
+
+11. TS with Node & Express (Backend MERN Focus)
+Typing Core Objects: Request, Response, and NextFunction from Express.
+
+Extending the Request Object: How to add custom properties (like a decoded JWT user payload) to the Express Request object globally.
+
+12. Decorators & Mixins (Advanced Patterns)
+Decorators: Experimental feature for metaprogramming (Class, Method, Property, Parameter decorators). Note: Heavily used in frameworks like NestJS, less common in standard Express, but strictly on your syllabus.
+
+Mixins: A pattern to build up classes from reusable components.
+
+13. Do's and Don'ts (Best Practices)
+Do: Enable strict: true in your tsconfig.json.
+
+Do: Use Interfaces for object shapes and API responses.
+
+Do: Use Utility Types to avoid rewriting interfaces.
+
+Don't: Use any unless absolutely necessary (use unknown if you truly don't know the type).
+
+Don't: Suppress compiler errors with @ts-ignore without a valid reason.

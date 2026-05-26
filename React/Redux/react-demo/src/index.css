@@ -1,0 +1,87 @@
+/* Global */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+button {
+  cursor: pointer;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #2563eb;
+  color: white;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #1e4ed8;
+}
+
+input {
+  padding: 8px;
+  margin-bottom: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Login */
+.login-container {
+  width: 300px;
+  margin: 60px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px;
+  background-color: #111827;
+}
+
+.navbar button {
+  background-color: #374151;
+}
+
+.navbar button:hover {
+  background-color: #4b5563;
+}
+
+/* Counter */
+.counter-container {
+  width: 300px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.counter-container h2 {
+  margin-bottom: 10px;
+}
+
+.counter-container p {
+  margin: 6px 0;
+}
+
+.counter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}

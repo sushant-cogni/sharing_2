@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.bg-light-gray {
+    background-color: #e4e4e4;
+}
+
+/* Typography & Layout for Left Section (Online Training) */
+.training-title {
+    font-size: 36px;
+    color: #333333;
+    font-weight: normal;
+}
+
+.training-text {
+    font-size: 16px;
+    color: #5e5e5e;
+    line-height: 1.5;
+}
+
+.btn-teal {
+    background-color: #568F90;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+}
+.btn-teal:hover {
+    background-color: #457576;
+    color: #ffffff;
+}
+
+/* Login Card Styles */
+.login-card {
+    background-color: #ffffff;
+    max-width: 380px;
+    width: 100%;
+}
+
+/* Covers both login-heading and login-title if used in HTML */
+.login-heading, .login-title {
+    font-size: 36px;
+    color: #333333;
+    font-weight: normal;
+}
+
+.custom-input {
+    background-color: #F2F2F2;
+    border: none;
+    font-size: 14px;
+    color: #5e5e5e;
+    padding: 12px 15px;
+}
+.custom-input:focus {
+    background-color: #F2F2F2;
+    box-shadow: none;
+    border: 1px solid #568F90;
+}
+
+.forgot-link {
+    font-size: 13px;
+    color: #00AEEF;
+}
+
+.btn-signin {
+    background-color: #0D3563;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+}
+.btn-signin:hover {
+    background-color: #08213f;
+    color: #ffffff;
+}
+
+/* Home Page Styles */
+.custom-nav .nav-link {
+    font-size: 14px;
+    color: #626262;
+}
+.custom-nav .nav-link.active {
+    color: #0D3563;
+    font-weight: bold;
+}
+
+.main-heading {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.sub-heading {
+    font-size: 22px;
+    font-weight: normal;
+    color: #5e5e5e;
+}
+
+.body-text {
+    font-size: 18px;
+    color: #5e5e5e;
+    line-height: 1.6;
+}
+
+.btn-theme {
+    background-color: #568F90;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    border: 2px solid #568F90;
+}
+
+.btn-outline-theme {
+    background-color: transparent;
+    color: #568F90;
+    font-size: 12px;
+    font-weight: bold;
+    border: 2px solid #568F90;
+}
+
+/* Footer Styles */
+.footer-help {
+    font-size: 13px;
+    color: #00AEEF;
+    text-decoration: none;
+}
+
+.footer-copy {
+    font-size: 13px;
+    color: #5e5e5e;
+}
+
+/* Carousel Indicators customization */
+.custom-indicators [data-bs-target] {
+    background-color: #568F90;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 5px;
+}

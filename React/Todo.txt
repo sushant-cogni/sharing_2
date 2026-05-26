@@ -1,0 +1,16 @@
+1. Revision of the notes with creation.			|
+2. Tecstak pdfs						| - Day 1
+3. Cheetsheet of overall react and its libraries.	|
+4. Typescript	------------------------------------------- Day 2
+5. OOPs							| 	
+6. Agile						| - Day 3
+7. Git							|
+8. HTML							| - Day 4
+9. CSS							|
+10. JS		------------------------------------------- Day 5
+
+
+Nextjs
+3js
+Frontend project with bootstrap,react,redux,nextjs.
+

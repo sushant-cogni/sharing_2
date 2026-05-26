@@ -1,0 +1,209 @@
+# 📘 TypeScript Mastery: Types & Type Inference
+
+## 🧠 The Core Concept
+
+### What is the TypeScript Type System?
+It is a static typing layer that assigns a specific shape and behavior to memory locations (variables, parameters, returns).
+
+
+
+* **Explicit Typing:** You explicitly tell the compiler what type a variable is (`let age: number = 21;`).
+* **Type Inference:** TypeScript's compiler is smart enough to guess the type based on the assigned value (`let age = 21; // TS infers 'number'`).
+
+### Why does it exist and what problem does it solve?
+JavaScript allows variables to morph freely (e.g., an array becoming a string), which causes catastrophic runtime errors. TypeScript locks the variable's nature in place, preventing invalid operations (like calling `.map()` on a string) at compile-time.
+
+---
+
+## ⚙️ Syntax & All Variants
+
+### 1. Primitive Types
+These map directly to JavaScript primitives. They are always lowercase in TypeScript.
+
+~~~typescript
+let username: string = "GenC_Dev";
+let salary: number = 675000;
+let isEmployed: boolean = true;
+let emptyValue: null = null;
+let notAssigned: undefined = undefined;
+let uniqueKey: symbol = Symbol("key");
+~~~
+
+### 2. Special Types (The "Escape Hatches" & "Safety Nets")
+* **`any` (The Escape Hatch - Avoid!):** Disables type checking entirely. Treat it as a code smell.
+~~~typescript
+let data: any = 42;
+data = "now a string"; // Valid, but dangerous
+data.map(x => x);      // Valid at compile-time, CRASHES at runtime
+~~~
+
+* **`unknown` (The Safe `any`):** Accepts any value, but forces you to verify its type before interacting with it.
+~~~typescript
+let safeData: unknown = "Hello";
+// safeData.toUpperCase(); // ERROR: Object is of type 'unknown'
+
+if (typeof safeData === "string") {
+  console.log(safeData.toUpperCase()); // Works! TS now knows it's a string.
+}
+~~~
+
+* **`void`:** Used for functions that execute logic but return nothing (or technically return `undefined`).
+~~~typescript
+function logMessage(msg: string): void {
+  console.log(msg);
+}
+~~~
+
+* **`never`:** Used for values that never occur. Functions that throw errors or have infinite loops return `never`.
+~~~typescript
+function crashApp(message: string): never {
+  throw new Error(message);
+  // Code execution literally never reaches past this point
+}
+~~~
+
+### 3. Data Structures
+* **Arrays:** Collections of the same data type.
+~~~typescript
+let scores: number[] = [90, 85, 100];
+let scoresAlternative: Array<number> = [90, 85, 100]; // Generic syntax
+~~~
+
+* **Tuples:** Fixed-length arrays where the type of each element at a specific index is known.
+~~~typescript
+let userRecord: [string, number, boolean] = ["Alice", 25, true];
+// userRecord[0] is strictly a string. userRecord[1] is strictly a number.
+~~~
+
+### 4. Type Inference
+If you assign a value immediately, you do not need to explicitly type it. Let the compiler do the work.
+
+~~~typescript
+let city = "Chennai"; // TS infers type 'string'
+// city = 100;        // ERROR: Type 'number' is not assignable to type 'string'
+
+// Inference in function returns:
+function add(a: number, b: number) { // TS infers return type is 'number'
+  return a + b; 
+}
+~~~
+
+---
+
+## ⚛️ MERN Stack Integration
+
+### 1. React Frontend (Hooks & Tuples)
+Type inference shines in React, but sometimes you need to step in. Tuples are famously used under the hood for `useState`.
+
+
+
+~~~typescript
+import { useState } from 'react';
+
+const Profile = () => {
+  // 1. Inference: TS automatically knows 'count' is a number
+  const [count, setCount] = useState(0); 
+
+  // 2. Explicit: When initial state is null, you MUST provide types
+  const [user, setUser] = useState<{name: string} | null>(null);
+
+  // 3. Custom Hook Returning a Tuple
+  function useStatus(): [string, (s: string) => void] {
+    const [status, setStatus] = useState("Idle");
+    return [status, setStatus]; // Returning as a Tuple guarantees order
+  }
+};
+~~~
+
+### 2. Node.js / Express Backend (Typing `unknown` & `void`)
+Handling incoming API payloads safely is a hallmark of a Senior Dev.
+
+~~~typescript
+import express, { Request, Response, NextFunction } from 'express';
+const app = express();
+
+app.use(express.json());
+
+// Express middleware strictly returns 'void'
+const logger = (req: Request, res: Response, next: NextFunction): void => {
+  console.log(`${req.method} ${req.path}`);
+  next();
+};
+
+app.post('/api/data', (req: Request, res: Response) => {
+  // `req.body` is naturally 'any'. We cast it to 'unknown' to force validation!
+  const payload: unknown = req.body;
+
+  if (typeof payload === "object" && payload !== null && "title" in payload) {
+    res.send(`Processing: ${(payload as any).title}`); // Safe-ish extraction
+  } else {
+    res.status(400).send("Invalid payload shape");
+  }
+});
+~~~
+
+---
+
+## 🎯 Interview "Gotchas" & FAQs
+
+* **Gotcha 1: "What is the difference between `any` and `unknown`?"**
+    * **Answer:** Both accept any value. However, `any` disables type checking, allowing you to perform invalid operations that crash at runtime. `unknown` is type-safe; the compiler forces you to write a "type guard" (like `typeof`) to prove what the variable is before you can call methods on it.
+* **Gotcha 2: "What is the difference between `void` and `never`?"**
+    * **Answer:** A function returning `void` completes its execution normally, it just doesn't return a value (it implicitly returns `undefined`). A function returning `never` *never* finishes executing normally—it either throws an error or gets stuck in an infinite loop.
+* **Gotcha 3: "Are Tuples completely strictly sized at runtime?"**
+    * **Answer:** No. This is a massive TypeScript trap. While `let myTuple: [number, string] = [1, "a"]` enforces length at initialization, you can actually bypass this using array methods: `myTuple.push("b")` works without a TS error.
+
+---
+
+## 💻 Coding Assessment Patterns
+
+### Pattern 1: The Exhaustive Switch (Using `never`)
+This pattern tests if you know how to use `never` to guarantee you've handled all possibilities.
+
+
+
+~~~typescript
+type Role = "Admin" | "User" | "Guest"; // Imagine we add "SuperAdmin" later
+
+function getPermissions(role: Role) {
+  switch (role) {
+    case "Admin": return "All";
+    case "User": return "Some";
+    case "Guest": return "None";
+    default:
+      // If a new role is added to the type but not this switch, 
+      // TS throws a compile error here because 'role' cannot be assigned to 'never'.
+      const exhaustiveCheck: never = role; 
+      return exhaustiveCheck;
+  }
+}
+~~~
+
+### Pattern 2: Correcting the `any` Payload
+
+~~~typescript
+// Assessment Question: Make this function safe without changing its signature.
+function processInput(input: any) {
+  // They want to see if you know how to validate dynamic types
+  if (typeof input === "string") {
+    return input.trim();
+  } else if (typeof input === "number") {
+    return input.toFixed(2);
+  }
+  return null;
+}
+~~~
+
+---
+
+## 📊 Mental Model / Diagram
+Use this table to map out the "Special Types" in your head when asked in a fast-paced interview:
+
+
+
+| Type | Definition | Example Use Case | Can it be assigned to other types? |
+| :--- | :--- | :--- | :--- |
+| **`any`** | Disables checking completely | Migrating old JS to TS (temporary) | Yes, everywhere (Dangerous!) |
+| **`unknown`** | Accepts anything, forces checks | Parsing unknown JSON APIs | No, until type-checked |
+| **`void`** | Standard empty return | Standard functions (`console.log()`) | No (except to `any`/`unknown`) |
+| **`never`** | Cannot happen, stops execution | Error throwing, infinite loops | Yes, to anything (Bottom Type) |

@@ -1,0 +1,33 @@
+{
+  "name": "blogify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "imports": {
+    "#utils": "./utils/index.js",
+    "#controllers": "./controllers/index.js",
+    "#routes": "./routes/index.js",
+    "#middlewares": "./middlewares/index.js",
+    "#models": "./models/index.js",
+    "#services": "./services/index.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "module-alias": "^2.3.4",
+    "mongoose": "^9.6.1",
+    "multer": "^2.1.1"
+  }
+}

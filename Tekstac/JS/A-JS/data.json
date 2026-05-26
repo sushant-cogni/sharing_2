@@ -1,0 +1,175 @@
+[
+  {
+    "id": 1,
+    "name": "Arjun Mehta",
+    "gender": "male",
+    "role": "Lead Frontend Developer",
+    "email": "arjun.m@company.com",
+    "skills": ["HTML5", "CSS3", "JavaScript", "React"],
+    "hcm_details": {
+      "department": "Engineering",
+      "employee_grade": "L4",
+      "date_of_joining": "2022-03-15",
+      "status": "Active"
+    },
+    "projects": [
+      { "name": "Global Dashboard", "status": "Completed" },
+      { "name": "Mobile Migration", "status": "In Progress" }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Sarah Jenkins",
+    "gender": "female",
+    "role": "UI/UX Designer",
+    "email": "s.jenkins@company.com",
+    "skills": ["Figma", "Adobe XD", "CSS3", "SASS"],
+    "hcm_details": {
+      "department": "Design",
+      "employee_grade": "L3",
+      "date_of_joining": "2023-01-10",
+      "status": "Active"
+    },
+    "projects": [
+      { "name": "Brand Refresh 2026", "status": "In Progress" }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Michael Chen",
+    "gender": "male",
+    "role": "Backend Engineer",
+    "email": "m.chen@company.com",
+    "skills": ["Node.js", "Express", "MongoDB", "Python"],
+    "hcm_details": {
+      "department": "Engineering",
+      "employee_grade": "L4",
+      "date_of_joining": "2021-11-05",
+      "status": "Active"
+    },
+    "projects": [
+      { "name": "Auth Service Overhaul", "status": "Completed" },
+      { "name": "Cloud Integration", "status": "In Progress" }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Priya Sharma",
+    "gender": "female",
+    "role": "Full Stack Developer",
+    "email": "psharma@company.com",
+    "skills": ["Angular", "Node.js", "PostgreSQL", "ES6"],
+    "hcm_details": {
+      "department": "Engineering",
+      "employee_grade": "L3",
+      "date_of_joining": "2022-07-22",
+      "status": "Active"
+    },
+    "projects": [
+      { "name": "Customer Portal", "status": "Testing" }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "David Rossi",
+    "gender": "male",
+    "role": "DevOps Engineer",
+    "email": "d.rossi@company.com",
+    "skills": ["Docker", "Kubernetes", "AWS", "CI/CD"],
+    "hcm_details": {
+      "department": "Infrastructure",
+      "employee_grade": "L5",
+      "date_of_joining": "2020-05-30",
+      "status": "Active"
+    },
+    "projects": [
+      { "name": "Pipeline Automation", "status": "Completed" },
+      { "name": "Server Migration", "status": "Planned" }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Elena Rodriguez",
+    "gender": "female",
+    "role": "QA Engineer",
+    "email": "elena.rod@company.com",
+    "skills": ["Selenium", "Jest", "Cypress", "JavaScript"],
+    "hcm_details": {
+      "department": "Quality Assurance",
+      "employee_grade": "L2",
+      "date_of_joining": "2023-09-12",
+      "status": "Active"
+    },
+    "projects": [
+      { "name": "Auto-Test Suite", "status": "In Progress" }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Kevin Lee",
+    "gender": "male",
+    "role": "Mobile App Developer",
+    "email": "k.lee@company.com",
+    "skills": ["React Native", "Swift", "Kotlin", "Firebase"],
+    "hcm_details": {
+      "department": "Mobile",
+      "employee_grade": "L3",
+      "date_of_joining": "2022-02-18",
+      "status": "Active"
+    },
+    "projects": [
+      { "name": "iOS App Launch", "status": "Completed" }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Amara Okafor",
+    "gender": "female",
+    "role": "Data Scientist",
+    "email": "a.okafor@company.com",
+    "skills": ["Python", "R", "SQL", "TensorFlow"],
+    "hcm_details": {
+      "department": "Data Science",
+      "employee_grade": "L4",
+      "date_of_joining": "2021-08-14",
+      "status": "Active"
+    },
+    "projects": [
+      { "name": "Predictive Analytics", "status": "In Progress" }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "James Wilson",
+    "gender": "male",
+    "role": "Project Manager",
+    "email": "j.wilson@company.com",
+    "skills": ["Agile", "Scrum", "Jira", "Communication"],
+    "hcm_details": {
+      "department": "Management",
+      "employee_grade": "M2",
+      "date_of_joining": "2019-12-01",
+      "status": "Active"
+    },
+    "projects": [
+      { "name": "Q1 Roadmap", "status": "Planning" }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Sophie Martin",
+    "gender": "female",
+    "role": "Content Strategist",
+    "email": "s.martin@company.com",
+    "skills": ["SEO", "Copywriting", "Branding", "Analytics"],
+    "hcm_details": {
+      "department": "Marketing",
+      "employee_grade": "L3",
+      "date_of_joining": "2023-04-10",
+      "status": "Active"
+    },
+    "projects": [
+      { "name": "SEO Campaign", "status": "In Progress" }
+    ]
+  }
+]

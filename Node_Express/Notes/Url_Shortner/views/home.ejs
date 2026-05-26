@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>URL Short</h1>
+    <% if (locals.id) { %>
+        <h4>Shortend URL : <%= id %></h4>
+    <% } %>
+
+    <div>
+        <form method="POST" action="/url_shortner">
+            <label>Enter URL<label>
+            <input 
+                type="text"
+                name="url"
+                placeholder="https://www.example.com"
+                />
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+
+    <br>
+    <br>
+
+    <div>
+        <% if (locals.urls) { %>
+            <table>
+                <thead>
+                    <th>Sr.no</th>
+                    <th>URL</th>
+                    <th>Short Id</th>
+                    <th>Visit Count</th>
+                </thead>
+                <tbody>
+                    <% urls.forEach((url,i) => { %>
+                        <tr>
+                            <td><%= i %></td>
+                            <td><%= url.url %></td>
+                            <td><%= url.shortId %></td>
+                            <td><%= url.history.length %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } %>
+    </div>
+</body>
+</html>
